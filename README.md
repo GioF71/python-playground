@@ -1,6 +1,6 @@
 # python-playground
 
-Exercises and notes about my python learning path
+Exercises and notes about my Python learning path
 
 ## Credits
 
