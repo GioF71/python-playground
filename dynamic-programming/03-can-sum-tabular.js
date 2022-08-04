@@ -34,6 +34,7 @@ const canSum = (targetSum, numbers) => {
     
 console.log(canSum_alvin(7, [2, 3]))  // True
 console.log(canSum(7, [2, 3]))  // True
+
 //console.log(canSum(7, [5, 3, 4, 7]))  // True
 //console.log(canSum(7, [2, 4]))  // False
 //console.log(canSum(8, [2, 3, 5]))  // True
