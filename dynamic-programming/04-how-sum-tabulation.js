@@ -1,5 +1,6 @@
 // this version creates unnecessary trailing elements on the table
 // the function has been modified to show this behavior
+// the out of bounds operations are logged, remove lines 11 to 13 to disable logging 
 const howSum_alvin = (targetSum, numbers) => {
     const table = Array(targetSum + 1).fill(null)
     table[0] = []
