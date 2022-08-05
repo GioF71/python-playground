@@ -1,4 +1,4 @@
-// Tabular
+// Tabulation
 
 // this version creates empty trailing elements on the table
 // the return has been modified to show this behavior
