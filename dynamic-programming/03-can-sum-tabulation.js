@@ -1,7 +1,7 @@
 // Tabulation
 
 // this version creates empty trailing elements on the table
-// the return has been modified to show this behavior
+// the return statement has been modified to show this behavior
 const canSum_alvin = (targetSum, numbers) => {
     const table = Array(targetSum + 1).fill(false)
     table[0] = true
@@ -16,7 +16,7 @@ const canSum_alvin = (targetSum, numbers) => {
 }
   
 // this version does not create empty trailing elements on the table
-// the return has been modified to show this behavior
+// the return statement has been modified to show this behavior
 const canSum = (targetSum, numbers) => {
     const table = Array(targetSum + 1).fill(false)
     table[0] = true

@@ -1,6 +1,7 @@
 // this version creates unnecessary trailing elements on the table
 // the function has been modified to show this behavior
-// the out of bounds operations are logged, remove lines 11 to 13 to disable logging 
+// the out of bounds operations are logged, remove lines 12 to 14 to disable logging 
+// the return statement has been modified to show this behavior
 const howSum_alvin = (targetSum, numbers) => {
     const table = Array(targetSum + 1).fill(null)
     table[0] = []
@@ -19,6 +20,7 @@ const howSum_alvin = (targetSum, numbers) => {
 }
 
 // this version does not create unnecessary trailing elements on the table
+// the return statement has been modified to show this behavior
 const howSum = (targetSum, numbers) => {
     const table = Array(targetSum + 1).fill(null)
     table[0] = []
@@ -35,7 +37,7 @@ const howSum = (targetSum, numbers) => {
     return [table.length, table[targetSum]]
 }
 
-console.log(howSum_alvin(7, [2,3]))        // 3,2,2
+console.log(howSum_alvin(7, [2,3]))  // 3,2,2
 console.log(howSum(7, [2,3]))        // 3,2,2
 
 

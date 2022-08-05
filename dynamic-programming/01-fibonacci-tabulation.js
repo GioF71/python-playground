@@ -1,5 +1,5 @@
 // this version creates empty trailing elements on the table
-// the return has been modified to show this behavior
+// the return statement has been modified to show this behavior
 const fib_alvin = (n) => {
     const table = Array(n + 1).fill(0)
     table[1] = 1
@@ -11,7 +11,7 @@ const fib_alvin = (n) => {
 }
 
 // this version does not create empty trailing elements on the table
-// the return has been modified to show this behavior
+// the return statement has been modified to show this behavior
 const fib = (n) => {
     const table = Array(n + 1).fill(0)
     table[1] = 1
