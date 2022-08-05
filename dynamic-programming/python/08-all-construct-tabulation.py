@@ -35,4 +35,4 @@ print(allConstruct("abcdef", ["ab", "abc", "cd", "def", "abcd", "ef", "c"]))
     # abc, def
     # abcd, ef
 print(allConstruct("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"])) # []
-print(allConstruct("aaaaaaaaaaaaaaaaaaaaazzzzzz", ["a", "aa", "aaa", "aaaa", "aaaaa"])) # []
+print(allConstruct("aaaaaaaaaaz", ["a", "aa", "aaa", "aaaa", "aaaaa"])) # []
