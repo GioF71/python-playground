@@ -1,11 +1,7 @@
 ### Tabulation
 
 def allConstruct(target, wordBank):
-    #print(len(target))
     table = [None] * (len(target) + 1)
-    #print(len(table))W
-    #for i in range(0, len(target) + 1):
-    #    table[i] = [[]]
     table[0] = [[]]
     for i in range(1, len(target) + 1):
         table[i] = []
