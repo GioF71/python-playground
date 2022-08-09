@@ -15,10 +15,16 @@ def __parse_start_to_tuple(start):
     return (h, m, period)
 
 def __start_tuple_to_minutes(start_tuple):
-    h = int(start_tuple[0])
-    m = int(start_tuple[1])
     period = 1 if start_tuple[2] == "PM" else 0
-    return m + ((period * 12) * 60 + h * 60)
+    hv = int(start_tuple[0]) 
+    h = 0 if (period == 0 and hv == 12) else \
+        12 if (period == 1 and hv == 12) else \
+        hv + 12 if period == 1 else \
+        hv
+    h = 12 * period if (hv == 12) else \
+        hv + (12 * period)
+    m = int(start_tuple[1])
+    return m + (h * 60)
 
 def __parse_duration_to_tuple(duration):
     ndx = duration.index(":")

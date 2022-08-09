@@ -1,7 +1,6 @@
 # This entrypoint file to be used in development. Start by reading README.md
-from time_calculator import add_time
+from time_calculator import add_time,__parse_start_to_tuple,__start_tuple_to_minutes
 from unittest import main
-
 
 #print(add_time("11:06 PM", "2:02"))
 print(add_time("3:30 PM", "2:12")) #"5:42 PM"
@@ -18,6 +17,10 @@ print(add_time("11:59 PM", "24:05", "Wednesday")) #"12:04 AM, Friday (2 days lat
 print(add_time("8:16 PM", "466:02", "tuesday")) #"6:18 AM, Monday (20 days later)"
 
 print(add_time("11:59 PM", "24:05", "Wednesday")) #"12:04 AM, Friday (2 days later)"
+
+print(__start_tuple_to_minutes(__parse_start_to_tuple("12:00 AM")))
+print(__start_tuple_to_minutes(__parse_start_to_tuple("1:00 PM")))
+print(__start_tuple_to_minutes(__parse_start_to_tuple("12:00 PM")))
 
 # Run unit tests automatically
 main(module='test_module', exit=False)
