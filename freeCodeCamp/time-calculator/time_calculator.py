@@ -17,10 +17,6 @@ def __parse_start_to_tuple(start):
 def __start_tuple_to_minutes(start_tuple):
     period = 1 if start_tuple[2] == "PM" else 0
     hv = int(start_tuple[0]) 
-    h = 0 if (period == 0 and hv == 12) else \
-        12 if (period == 1 and hv == 12) else \
-        hv + 12 if period == 1 else \
-        hv
     h = 12 * period if (hv == 12) else \
         hv + (12 * period)
     m = int(start_tuple[1])
@@ -59,7 +55,7 @@ def add_time(start, duration, dayOfWeek = None):
     # decompose 
     h = sum_tuple[1]
     period = "PM" if h >= 12 else "AM"
-    hourStr = 12 if h == 0 else str(h) if h <= 12 else str(h - 12)
+    hourStr = "12" if h in [0, 12] else str(h) if h < 12 else str(h - 12)
     minStr = str(sum_tuple[2])     
     
     # base h:mm AM|PM covered
