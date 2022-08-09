@@ -19,8 +19,6 @@ def arithmetic_arranger(functions, show_answer = False):
     subtract_index = 1
     operators = ["+", "-"]
     op_data = []
-    bList = []
-    opList = []
     wList = []
     resultList = []
     for current in functions if functions is not None else []:
@@ -44,8 +42,6 @@ def arithmetic_arranger(functions, show_answer = False):
         result = (int(a) + int(b)) if op == 0 else int(a) - int(b)
         resultList.append(result)
         w = max(ndx, len(f) - ndx - 1)
-        bList.append(b)
-        opList.append(op)
         wList.append(w)
         op_data.append(OpDef(a, b, op))
 
