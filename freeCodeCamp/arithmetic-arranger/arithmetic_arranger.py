@@ -23,9 +23,9 @@ class Operation:
 
 def contains_operator(function, operators):
     for operator in operators:
-        ndx = function.find(operator)
-        if ndx != -1:
-            return operator, ndx
+        op_index = function.find(operator)
+        if op_index != -1:
+            return operator, op_index
     return None
 
 def arithmetic_arranger(functions, show_answer = False):
@@ -46,14 +46,14 @@ def arithmetic_arranger(functions, show_answer = False):
         if contains_operator_result == None:
             return "Error: Operator must be '+' or '-'."    
         operator = contains_operator_result[0]
-        ndx = contains_operator_result[1]
-        if (ndx > max_digits) or (len(f) - ndx - 1) > max_digits:
+        op_index = contains_operator_result[1]
+        if (op_index > max_digits) or (len(f) - op_index - 1) > max_digits:
             return "Error: Numbers cannot be more than four digits."
-        a = f[0:ndx]
-        b = f[ndx + 1:]
+        a = f[0:op_index]
+        b = f[op_index + 1:]
         if not (a.isnumeric() and b.isnumeric()):
             return "Error: Numbers must only contain digits."
-        width = max(ndx, len(f) - ndx - 1)
+        width = max(op_index, len(f) - op_index - 1)
         operations.append(Operation(a = a, b = b, operator = operator, width = width))
 
     # return output lines
