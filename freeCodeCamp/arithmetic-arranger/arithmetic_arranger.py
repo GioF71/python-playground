@@ -42,13 +42,13 @@ def arithmetic_arranger(functions, show_answer = False):
     subtract_index = 1
     operators = ["+", "-"]
     op_data = []
-    op_operator = None
+    operator = None
     for current in functionArray:
         f = current.replace(" ", "")
         contains_operator_result = contains_operator(f, operators)
         if contains_operator_result == None:
             return "Error: Operator must be '+' or '-'."    
-        op_operator = contains_operator_result[0]
+        operator = contains_operator_result[0]
         ndx = contains_operator_result[1]
         if (ndx > max_digits) or (len(f) - ndx - 1) > max_digits:
             return "Error: Numbers cannot be more than four digits."
@@ -56,9 +56,9 @@ def arithmetic_arranger(functions, show_answer = False):
         b = f[ndx + 1:]
         if not (a.isnumeric() and b.isnumeric()):
             return "Error: Numbers must only contain digits."
-        result = operator_dict[op_operator].get_executor()(int(a), int(b))
+        result = operator_dict[operator].get_executor()(int(a), int(b))
         width = max(ndx, len(f) - ndx - 1)
-        op_data.append(OpDef(a = a, b = b, operator = op_operator, width = width, result = result))
+        op_data.append(OpDef(a = a, b = b, operator = operator, width = width, result = result))
 
     # return output lines
     resultStr = None
