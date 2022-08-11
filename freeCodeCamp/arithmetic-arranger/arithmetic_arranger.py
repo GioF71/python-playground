@@ -9,7 +9,7 @@ class Operator:
 operator_array = [Operator("+", lambda a, b: a + b), Operator("-", lambda a, b: a - b)]
 operator_dict = { i.get_symbol(): i for i in operator_array}
 
-class OpDef:
+class Operation:
     def __init__(self, a, b, operator, width, result):
         self.a = a
         self.b = b
@@ -58,7 +58,7 @@ def arithmetic_arranger(functions, show_answer = False):
             return "Error: Numbers must only contain digits."
         result = operator_dict[operator].get_executor()(int(a), int(b))
         width = max(ndx, len(f) - ndx - 1)
-        op_data.append(OpDef(a = a, b = b, operator = operator, width = width, result = result))
+        op_data.append(Operation(a = a, b = b, operator = operator, width = width, result = result))
 
     # return output lines
     resultStr = None
