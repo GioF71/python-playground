@@ -72,7 +72,8 @@ def arithmetic_arranger(functions, show_answer = False):
             second_line += "{op} {addendum:>{width}}".format(op = op_data[i].get_operator(), addendum = op_data[i].get_b(), width = op_data[i].get_width())
             third_line += "-" * (op_data[i].get_width() + 2)
             if show_answer:
-                fourth_line += "{answ:>{width}}".format(answ = op_data[i].get_result(), width = op_data[i].get_width() + 2)
+                result = operator_dict[op_data[i].get_operator()].get_executor()(int(op_data[i].get_a()), int(op_data[i].get_b()))
+                fourth_line += "{answ:>{width}}".format(answ = result, width = op_data[i].get_width() + 2)
             if i < (len(op_data) - 1):
                 second_line += op_separator
                 first_line += op_separator
