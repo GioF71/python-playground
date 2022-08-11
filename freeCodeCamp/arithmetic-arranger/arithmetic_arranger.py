@@ -40,7 +40,6 @@ def arithmetic_arranger(functions, show_answer = False):
     subtract_index = 1
     operators = ["+", "-"]
     operations = []
-    operator = None
     for current in functionArray:
         f = current.replace(" ", "")
         contains_operator_result = contains_operator(f, operators)
