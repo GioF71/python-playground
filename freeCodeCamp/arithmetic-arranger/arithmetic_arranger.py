@@ -50,13 +50,12 @@ def arithmetic_arranger(functions, show_answer = False):
             return "Error: Operator must be '+' or '-'."    
         op_operator = contains_operator_result[0]
         ndx = contains_operator_result[1]
-        if (ndx) > max_digits or (len(f) - ndx - 1) > max_digits:
+        if (ndx > max_digits) or (len(f) - ndx - 1) > max_digits:
             return "Error: Numbers cannot be more than four digits."
         a = f[0:ndx]
         b = f[ndx + 1:]
         if not (a.isnumeric() and b.isnumeric()):
             return "Error: Numbers must only contain digits."
-        #result = (int(a) + int(b)) if op == 0 else int(a) - int(b)
         result = operator_dict[op_operator].get_executor()(int(a), int(b))
         width = max(ndx, len(f) - ndx - 1)
         op_data.append(OpDef(a = a, b = b, operator = op_operator, width = width, result = result))
