@@ -10,18 +10,16 @@ operator_array = [Operator("+", lambda a, b: a + b), Operator("-", lambda a, b: 
 operator_dict = { i.get_symbol(): i for i in operator_array}
 
 class OpDef:
-    def __init__(self, a, b, operator, op, width, result):
+    def __init__(self, a, b, operator, width, result):
         self.a = a
         self.b = b
         self.operator = operator
-        self.op = op
         self.width = width
         self.result = result
 
     def get_a(self): return self.a
     def get_b(self): return self.b
     def get_operator(self): return self.operator
-    def get_op(self): return self.op
     def get_width(self): return self.width
     def get_result(self): return self.result
 
@@ -74,7 +72,7 @@ def arithmetic_arranger(functions, show_answer = False):
         #result = (int(a) + int(b)) if op == 0 else int(a) - int(b)
         result = operator_dict[op_operator].get_executor()(int(a), int(b))
         width = max(ndx, len(f) - ndx - 1)
-        op_data.append(OpDef(a = a, b = b, operator = op_operator, op = op, width = width, result = result))
+        op_data.append(OpDef(a = a, b = b, operator = op_operator, width = width, result = result))
 
     # return output lines
     resultStr = None
@@ -85,7 +83,7 @@ def arithmetic_arranger(functions, show_answer = False):
         fourth_line = "" if show_answer else None
         for i in range(0, len(op_data)):
             first_line += "{addendum:>{width}}".format(addendum = op_data[i].get_a(), width = op_data[i].get_width() + 2)
-            second_line += "{op} {addendum:>{width}}".format(op = operators[op_data[i].get_op()], addendum = op_data[i].get_b(), width = op_data[i].get_width())
+            second_line += "{op} {addendum:>{width}}".format(op = op_data[i].get_operator(), addendum = op_data[i].get_b(), width = op_data[i].get_width())
             third_line += "-" * (op_data[i].get_width() + 2)
             if show_answer:
                 fourth_line += "{answ:>{width}}".format(answ = op_data[i].get_result(), width = op_data[i].get_width() + 2)
