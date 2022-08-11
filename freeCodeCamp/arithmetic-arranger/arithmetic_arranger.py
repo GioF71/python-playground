@@ -50,19 +50,6 @@ def arithmetic_arranger(functions, show_answer = False):
             return "Error: Operator must be '+' or '-'."    
         op_operator = contains_operator_result[0]
         ndx = contains_operator_result[1]
-
-        op = None
-        ndx = f.find("+")
-        if ndx != -1:
-            op = sum_index
-            op_operator = "+"
-        else:
-            ndx = f.find("-")
-            if (ndx != -1):
-                op = subtract_index
-                op_operator = "-"
-            else:
-                return "Error: Operator must be '+' or '-'."
         if (ndx) > max_digits or (len(f) - ndx - 1) > max_digits:
             return "Error: Numbers cannot be more than four digits."
         a = f[0:ndx]
