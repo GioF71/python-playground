@@ -10,18 +10,16 @@ operator_array = [Operator("+", lambda a, b: a + b), Operator("-", lambda a, b: 
 operator_dict = { i.get_symbol(): i for i in operator_array}
 
 class Operation:
-    def __init__(self, a, b, operator, width, result):
+    def __init__(self, a, b, operator, width):
         self.a = a
         self.b = b
         self.operator = operator
         self.width = width
-        self.result = result
 
     def get_a(self): return self.a
     def get_b(self): return self.b
     def get_operator(self): return self.operator
     def get_width(self): return self.width
-    def get_result(self): return self.result
 
 def contains_operator(function, operators):
     for operator in operators:
@@ -56,9 +54,8 @@ def arithmetic_arranger(functions, show_answer = False):
         b = f[ndx + 1:]
         if not (a.isnumeric() and b.isnumeric()):
             return "Error: Numbers must only contain digits."
-        result = operator_dict[operator].get_executor()(int(a), int(b))
         width = max(ndx, len(f) - ndx - 1)
-        op_data.append(Operation(a = a, b = b, operator = operator, width = width, result = result))
+        op_data.append(Operation(a = a, b = b, operator = operator, width = width))
 
     # return output lines
     resultStr = None
