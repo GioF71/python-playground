@@ -39,7 +39,7 @@ def arithmetic_arranger(functions, show_answer = False):
     sum_index = 0
     subtract_index = 1
     operators = ["+", "-"]
-    op_data = []
+    operations = []
     operator = None
     for current in functionArray:
         f = current.replace(" ", "")
@@ -55,7 +55,7 @@ def arithmetic_arranger(functions, show_answer = False):
         if not (a.isnumeric() and b.isnumeric()):
             return "Error: Numbers must only contain digits."
         width = max(ndx, len(f) - ndx - 1)
-        op_data.append(Operation(a = a, b = b, operator = operator, width = width))
+        operations.append(Operation(a = a, b = b, operator = operator, width = width))
 
     # return output lines
     resultStr = None
@@ -64,15 +64,15 @@ def arithmetic_arranger(functions, show_answer = False):
         second_line = ""
         third_line = ""
         fourth_line = "" if show_answer else None
-        for i in range(0, len(op_data)):
-            curr_op = op_data[i]
+        for i in range(0, len(operations)):
+            curr_op = operations[i]
             first_line += "{addendum:>{width}}".format(addendum = curr_op.get_a(), width = curr_op.get_width() + 2)
             second_line += "{op} {addendum:>{width}}".format(op = curr_op.get_operator(), addendum = curr_op.get_b(), width = curr_op.get_width())
             third_line += "-" * (curr_op.get_width() + 2)
             if show_answer:
                 result = operator_dict[curr_op.get_operator()].get_executor()(int(curr_op.get_a()), int(curr_op.get_b()))
                 fourth_line += "{answ:>{width}}".format(answ = result, width = curr_op.get_width() + 2)
-            if i < (len(op_data) - 1):
+            if i < (len(operations) - 1):
                 second_line += op_separator
                 first_line += op_separator
                 third_line += op_separator
