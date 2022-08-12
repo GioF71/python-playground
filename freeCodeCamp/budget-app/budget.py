@@ -10,6 +10,26 @@ class Category:
         self.ledger = []
         self.balance = float(0.0)
 
+    def __str__(self):
+        line_length = 30
+        result = self.get_category().center(line_length, "*")
+        result += "\n"
+        # show ledger
+        for entry in self.ledger:
+            valStr = "{:.2f}".format(entry[Category.__LEDGER_AMOUNT])
+            remaining = line_length - len(valStr)
+            curr_descr = entry[Category.__LEDGER_DESCRIPTION]
+            max_descr_len = remaining - 1
+            cut_descr = min(len(curr_descr), max_descr_len)
+            curr_descr = curr_descr[0:cut_descr]
+            line = curr_descr.ljust(remaining, " ")
+            line += valStr
+            line += "\n"
+            result += line
+        total_line = "Total: {:.2f}".format(self.get_balance())
+        result += total_line
+        return result
+
     def get_category(self): return self.budget_category
 
     def deposit(self, amount, description = ''):
