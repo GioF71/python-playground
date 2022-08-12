@@ -29,15 +29,15 @@ class Hat:
                 result.append(item[0])
         self.contents = result
 
-
-
-def compare_array(item1, item2):
-    if item1[1] > item2[1]:
-        return -1
-    elif item1[1] < item2[1]:
-        return +1
-    return 0
-
+    def draw(self, count):
+        cnt = count if count <= len(self.contents) else len(self.contents)
+        result = []
+        for i in range(cnt):
+            # random...
+            rnd = random.randrange(len(self.contents))
+            result.append(self.contents[rnd])
+            self.contents.pop(rnd)
+        return result
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
     pass
