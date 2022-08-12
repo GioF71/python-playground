@@ -1,5 +1,3 @@
-import json
-
 class Category:
     
     def get_amount_key(): return 'amount'
@@ -32,7 +30,14 @@ class Category:
 
     def get_category(self): return self.budget_category
 
-    def get_ledger(self): return self.ledger
+    def get_ledger(self):
+        ledger_copy = []
+        for current in self.ledger:
+            entry_copy = {
+                Category.get_amount_key(): current[Category.get_amount_key()], \
+                Category.get_description_key(): current[Category.get_description_key()]}
+            ledger_copy.append(entry_copy)
+        return ledger_copy
 
     def deposit(self, amount, description = ''):
         self.ledger.append(self.__build_ledger_entry(amount, description))
