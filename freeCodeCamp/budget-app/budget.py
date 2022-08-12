@@ -32,6 +32,8 @@ class Category:
 
     def get_category(self): return self.budget_category
 
+    def get_ledger(self): return self.ledger
+
     def deposit(self, amount, description = ''):
         self.ledger.append(self.__build_ledger_entry(amount, description))
         self.balance += amount
@@ -70,4 +72,46 @@ class Category:
 
 
 def create_spend_chart(categories):
-    pass
+    result = "Percentage spent by category\n"
+    total_withdrawal = 0
+    withdrawal_dict = {}
+    withdrawal_perc_dict = {}
+    max_category_len = 0
+    for category in categories:
+        max_category_len = max(max_category_len, len(category.get_category()))
+        withdrawal = float(0)
+        for entry in category.get_ledger():
+            amount = entry["amount"]
+            if amount < 0:
+                withdrawal -= amount
+        withdrawal_dict[category.get_category()] = withdrawal
+        total_withdrawal += withdrawal
+    for category in categories:
+        percentage = float(100) * (withdrawal_dict[category.get_category()] / total_withdrawal)
+        withdrawal_perc_dict[category.get_category()] = percentage
+
+    for i in range(100, -1, -10):
+        line = "{:>3}|".format(i)
+        for category in categories:
+            if (withdrawal_perc_dict[category.get_category()] > i):
+                line += " o "
+            else:
+                line += "   "
+        line += " \n"
+        result += line
+
+    # separator line
+    separation_line = "    "
+    for x in range(len(categories)):
+        separation_line += "---" 
+    result += separation_line + "-\n" 
+    for x in range(max_category_len):
+        line = "    "
+        for category in categories:
+            if len(category.get_category()) >= (x + 1):
+                line += " " + category.get_category()[x:x + 1] + " "
+            else:
+                line += "   "
+        result += line + " "
+        if x < (max_category_len - 1): result += "\n"
+    return result
