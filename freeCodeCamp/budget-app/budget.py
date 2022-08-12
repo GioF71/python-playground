@@ -2,8 +2,8 @@ import json
 
 class Category:
     
-    __LEDGER_AMOUNT = 'amount'
-    __LEDGER_DESCRIPTION = 'description'
+    def get_amount_key(): return 'amount'
+    def get_description_key(): return 'description'
 
     def __init__(self, budget_category):
         self.budget_category = budget_category
@@ -16,9 +16,9 @@ class Category:
         result += "\n"
         # show ledger
         for entry in self.ledger:
-            valStr = "{:.2f}".format(entry[Category.__LEDGER_AMOUNT])
+            valStr = "{:.2f}".format(entry[Category.get_amount_key()])
             remaining = line_length - len(valStr)
-            curr_descr = entry[Category.__LEDGER_DESCRIPTION]
+            curr_descr = entry[Category.get_description_key()]
             max_descr_len = remaining - 1
             cut_descr = min(len(curr_descr), max_descr_len)
             curr_descr = curr_descr[0:cut_descr]
@@ -66,8 +66,8 @@ class Category:
 
     def __build_ledger_entry(self, amount, description):
         return { \
-            Category.__LEDGER_AMOUNT: amount, \
-            Category.__LEDGER_DESCRIPTION: (description if description is not None else '')}
+            Category.get_amount_key(): amount, \
+            Category.get_description_key(): (description if description is not None else '')}
 
 
 
@@ -81,7 +81,7 @@ def create_spend_chart(categories):
         max_category_len = max(max_category_len, len(category.get_category()))
         withdrawal = float(0)
         for entry in category.get_ledger():
-            amount = entry["amount"]
+            amount = entry[Category.get_amount_key()]
             if amount < 0:
                 withdrawal -= amount
         withdrawal_dict[category.get_category()] = withdrawal
