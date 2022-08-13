@@ -3,30 +3,18 @@ import random
 # Consider using the modules imported above.
 
 class Hat:
-    def __init__(self, \
-            red = 0, \
-            blue = 0, \
-            green = 0, \
-            yellow = 0, \
-            test = 0):
-        by_color = {}
-        by_color["red"] = red
-        by_color["blue"] = blue
-        by_color["green"] = green
-        by_color["yellow"] = yellow
-        by_color["test"] = test
+
+    def __init__(self, **kwargs):
         color_list = []
-        color_list.append(("red", red))
-        color_list.append(("blue", blue))
-        color_list.append(("green", green))
-        color_list.append(("yellow", yellow))
-        color_list.append(("test", test))
+        for k,v in kwargs.items():
+            color_list.append((k, v))
         sList = sorted(color_list, key = lambda x: x[1], reverse = True)
         result = []
         for item in sList:
             cnt = item[1]
-            for x in range(cnt):
-                result.append(item[0])
+            if cnt > 0:
+                for x in range(cnt):
+                    result.append(item[0])
         self.contents = result
 
     def draw(self, count):
