@@ -57,16 +57,14 @@ class Hat:
 #    return result
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
-    probability = None
     success_count = 0
     for experiment in range(num_experiments):
         current_hat = hat.copy()
         drawn = {}
         # start drawing balls
-        for d in range(num_balls_drawn):
-            list_drawn = current_hat.draw(1)
-            for current_drawn in list_drawn:
-                drawn[current_drawn] = 1 if (not current_drawn in drawn) else drawn[current_drawn] + 1
+        list_drawn = current_hat.draw(num_balls_drawn)
+        for current_drawn in list_drawn:
+            drawn[current_drawn] = 1 if (not current_drawn in drawn) else drawn[current_drawn] + 1
         # check success
         exp_success = True
         for k,v in expected_balls.items():
@@ -75,5 +73,5 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
             if enough == False: 
                 exp_success = False
                 break            
-        success_count += 1 if exp_success == True else 0
+        if exp_success == True: success_count = success_count + 1
     return success_count / num_experiments
