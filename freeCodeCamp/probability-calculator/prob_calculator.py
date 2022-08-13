@@ -35,9 +35,45 @@ class Hat:
         for i in range(cnt):
             # random...
             rnd = random.randrange(len(self.contents))
-            result.append(self.contents[rnd])
+            # which color?
+            color = self.contents[rnd]
+            result.append(color)
+            self.by_color[color] = self.by_color[color] - 1
             self.contents.pop(rnd)
         return result
+    
+    def copy(self):
+        return Hat( \
+            red = self.by_color["red"], \
+            blue = self.by_color["blue"], \
+            green = self.by_color["green"], \
+            yellow = self.by_color["yellow"], \
+            test = self.by_color["test"])
+
+#def convert_list(balls):
+#    result = {}
+#    for ball in balls:
+#        result[ball] = 1 if (result[ball] is None) else result[ball] + 1
+#    return result
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
-    pass
+    probability = None
+    success_count = 0
+    for experiment in range(num_experiments):
+        current_hat = hat.copy()
+        drawn = {}
+        # start drawing balls
+        for d in range(num_balls_drawn):
+            list_drawn = current_hat.draw(1)
+            for current_drawn in list_drawn:
+                drawn[current_drawn] = 1 if (not current_drawn in drawn) else drawn[current_drawn] + 1
+        # check success
+        exp_success = True
+        for k,v in expected_balls.items():
+            drawn_k = drawn[k] if k in drawn else 0
+            enough = drawn_k >= v
+            if enough == False: 
+                exp_success = False
+                break            
+        success_count += 1 if exp_success == True else 0
+    return success_count / num_experiments
