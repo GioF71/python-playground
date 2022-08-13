@@ -5,17 +5,10 @@ import random
 class Hat:
 
     def __init__(self, **kwargs):
-        color_list = []
+        self.contents = []
         for k,v in kwargs.items():
-            color_list.append((k, v))
-        sList = sorted(color_list, key = lambda x: x[1], reverse = True)
-        result = []
-        for item in sList:
-            cnt = item[1]
-            if cnt > 0:
-                for x in range(cnt):
-                    result.append(item[0])
-        self.contents = result
+            for _ in range(v):
+                self.contents.append(k)
 
     def draw(self, count):
         cnt = min(count, len(self.contents))
@@ -23,10 +16,7 @@ class Hat:
         for i in range(cnt):
             # random...
             rnd = random.randrange(len(self.contents))
-            # which color?
-            color = self.contents[rnd]
-            result.append(color)
-            self.contents.pop(rnd)
+            result.append(self.contents.pop(rnd))
         return result
     
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
