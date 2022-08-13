@@ -9,12 +9,12 @@ class Hat:
             green = 0, \
             yellow = 0, \
             test = 0):
-        self.by_color = {}
-        self.by_color["red"] = red
-        self.by_color["blue"] = blue
-        self.by_color["green"] = green
-        self.by_color["yellow"] = yellow
-        self.by_color["test"] = test
+        by_color = {}
+        by_color["red"] = red
+        by_color["blue"] = blue
+        by_color["green"] = green
+        by_color["yellow"] = yellow
+        by_color["test"] = test
         color_list = []
         color_list.append(("red", red))
         color_list.append(("blue", blue))
@@ -38,28 +38,13 @@ class Hat:
             # which color?
             color = self.contents[rnd]
             result.append(color)
-            self.by_color[color] = self.by_color[color] - 1
             self.contents.pop(rnd)
         return result
     
-    def copy(self):
-        return Hat( \
-            red = self.by_color["red"], \
-            blue = self.by_color["blue"], \
-            green = self.by_color["green"], \
-            yellow = self.by_color["yellow"], \
-            test = self.by_color["test"])
-
-#def convert_list(balls):
-#    result = {}
-#    for ball in balls:
-#        result[ball] = 1 if (result[ball] is None) else result[ball] + 1
-#    return result
-
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
     success_count = 0
     for experiment in range(num_experiments):
-        current_hat = hat.copy()
+        current_hat = copy.deepcopy(hat)
         drawn = {}
         # start drawing balls
         list_drawn = current_hat.draw(num_balls_drawn)
