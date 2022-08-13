@@ -30,7 +30,7 @@ class Hat:
         self.contents = result
 
     def draw(self, count):
-        cnt = count if count <= len(self.contents) else len(self.contents)
+        cnt = min(count, len(self.contents))
         result = []
         for i in range(cnt):
             # random...
